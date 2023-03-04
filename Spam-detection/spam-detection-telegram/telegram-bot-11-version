@@ -1,0 +1,57 @@
+# Import libraries
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+
+
+
+# Load the data
+url = 'https://raw.githubusercontent.com/justmarkham/pycon-2016-tutorial/master/data/sms.tsv'
+data = pd.read_csv(url, sep='\t', header=None)
+data.columns = ['label', 'message']
+
+# Preprocess the data
+vectorizer = CountVectorizer(stop_words='english')
+X_train = vectorizer.fit_transform(data['message'])
+y_train = data['label']
+
+# Train the model
+clf = MultinomialNB()
+clf.fit(X_train, y_train)
+
+# Define a function to handle incoming messages
+def handle_message(update, context):
+    # Get the text of the incoming message
+    message_text = update.message.text
+    
+    # Use the model to make a prediction
+    X_message = vectorizer.transform([message_text])
+    prediction = clf.predict(X_message)[0]
+    
+    # Send a response back to the user
+    if prediction == 'ham':
+        response_text = 'The message is not spam.'
+    else:
+        response_text = 'The message is spam.'
+    
+    update.message.reply_text(response_text)
+
+# Set up the Telegram bot
+updater = Updater(token='6170247573:AAFVYcSGPTnpPrhkHTWr8Cw7k-mY1RkxCU0')
+dispatcher = updater.dispatcher
+
+# Define a command handler to start the bot
+def start(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Hi! I'm a spam detector bot. Send me a message and I'll tell you if it's spam or not.")
+
+start_handler = CommandHandler('start', start)
+dispatcher.add_handler(start_handler)
+
+# Define a message handler to handle incoming messages
+message_handler = MessageHandler(Filters.text & (~Filters.command), handle_message)
+dispatcher.add_handler(message_handler)
+
+# Start the bot
+updater.start_polling()
