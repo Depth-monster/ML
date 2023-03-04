@@ -27,7 +27,7 @@ clf = MultinomialNB()
 clf.fit(X_train, y_train)
 
 # Create a Telegram bot
-bot = telegram.Bot(token='6170247573:AAFVYcSGPTnpPrhkHTWr8Cw7k-mY1RkxCU0')
+bot = telegram.Bot(token='')
 
 # Define the message handler function
 def handle_message(update: Update, context: CallbackContext) -> None:
@@ -41,7 +41,7 @@ def handle_message(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(reply_text)
 
 # Set up the message handler with the bot
-updater = Updater(token='6170247573:AAFVYcSGPTnpPrhkHTWr8Cw7k-mY1RkxCU0', use_context=True)
+updater = Updater(token='', use_context=True)
 updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
 
 # Start the bot
