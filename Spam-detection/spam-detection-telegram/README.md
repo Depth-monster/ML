@@ -11,6 +11,7 @@ Here i'm showing some screens and source code is in bot.py or below.
 
 ![image](https://user-images.githubusercontent.com/122405130/227812094-181ee0a0-ab82-4919-8da3-afb457cd947d.png)
 
+![image](https://user-images.githubusercontent.com/122405130/227812957-5ba16c1b-bd4b-4583-ac31-553de5ce0b57.png)
 
 
 This code loads SMS data from a remote URL using pandas, trains a Naive Bayes classifier using scikit-learn, and defines a message handler function for spam detection.
