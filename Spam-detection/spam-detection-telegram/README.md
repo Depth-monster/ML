@@ -1,5 +1,12 @@
 ## Step to step implementation of the spam detector
-#### Saerching for correct steps
+#### We are going to create a simple telegram spam-detection bot 
+
+<ul>
+<li>Open telegram and create a telegram bot via https://t.me/BotFather</li>
+<li>Copy an API_TOKEN</li>
+<li>Paste an API_TOKEN instead of "API_TOKEN" below in the code</li>
+<li>Run code (for example on Google Colab)</li>
+</ul>
 
 ```python
 !pip uninstall telebot
