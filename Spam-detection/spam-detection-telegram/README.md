@@ -9,6 +9,21 @@
 </ul>
 Here i'm showing some screens and source code is in bot.py or below.
 
+![image](https://user-images.githubusercontent.com/122405130/227812094-181ee0a0-ab82-4919-8da3-afb457cd947d.png)
+
+
+
+This code loads SMS data from a remote URL using pandas, trains a Naive Bayes classifier using scikit-learn, and defines a message handler function for spam detection.
+
+The first part of the code loads SMS data from the specified remote URL and creates a pandas DataFrame object 'data'. The DataFrame has two columns - 'label' and 'message'. 'label' column contains the labels for each message as either 'ham' or 'spam', and 'message' column contains the actual text message.
+
+The second part of the code trains a Naive Bayes classifier using scikit-learn's MultinomialNB class. The CountVectorizer class is used to convert the text data into a numerical format that can be used for training the classifier. The 'stop_words' argument in CountVectorizer is set to 'english' to remove common English stop words from the text data. The transformed text data is then split into 'X' and 'y' variables, where 'X' contains the transformed text data and 'y' contains the labels.
+
+The third part of the code defines a message handler function for spam detection. The function is decorated with '@bot.message_handler' which indicates that the function should be called when the bot receives a new message. The 'func=lambda message: True' argument ensures that the function is called for every message that the bot receives.
+
+Inside the message handler function, the incoming message is preprocessed using the same CountVectorizer object used in training. The preprocessed message is then passed to the trained Naive Bayes classifier for prediction. If the prediction is 'spam', the message is considered as spam and the bot responds with a warning message 'SPAM'. If the prediction is 'ham', the message is considered as not spam, and the bot responds with an acknowledgement message "It's HAM".
+
+Note that the commented-out line "bot.delete_message(message.chat.id, message.message_id)" is intended to delete the message if it is classified as spam, but it is currently commented out to avoid accidentally deleting non-spam messages.
 ```python
 !pip uninstall telebot
 !pip install pyTelegramBotAPI
