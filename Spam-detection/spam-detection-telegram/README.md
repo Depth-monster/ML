@@ -7,7 +7,7 @@
 <li>Paste an API_TOKEN instead of "API_TOKEN" below in the code</li>
 <li>Run code (for example on Google Colab)</li>
 </ul>
-
+Here i'm showing some screens and source code is in bot.py or below.
 ```python
 !pip uninstall telebot
 !pip install pyTelegramBotAPI
