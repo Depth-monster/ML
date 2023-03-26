@@ -13,7 +13,7 @@ Here i'm showing some screens and source code is in bot.py or below.
 !pip uninstall telebot
 !pip install pyTelegramBotAPI
 !pip install pytelegrambotapi --upgrade
-
+#
 import telebot
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
